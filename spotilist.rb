@@ -1,29 +1,59 @@
 # spotilist.rb
-require 'hallon'
 
 class Spotilist < Sinatra::Base
+  configure :production do
+    require 'libspotify-heroku'
+  end
+
   configure :development do
     register Sinatra::Reloader
   end
 
-  Hallon.load_timeout = 60.0
+  configure do 
+    $hallon ||= begin
+      require 'hallon'
+      appkey = ENV['SPOTIFY_APPKEY']# IO.read('./bin/spotify_appkey.key')
+      Hallon.load_timeout = 35
+      Hallon::Session.initialize(appkey).tap do |hallon|
+        hallon.login!(ENV['SPOTIFY_USRNM'], ENV['SPOTIFY_PWD'])
+      end
+    end
+
+    set :hallon, $hallon
+
+    # Allow iframing
+    disable :protection
+  end
+
+  helpers do
+    def hallon
+      Hallon::Session.instance
+    end
+  end
+
+  at_exit do
+    if Hallon::Session.instance?
+      hallon = Hallon::Session.instance
+      hallon.logout!
+    end
+  end
+
+  error Hallon::TimeoutError do
+    status 504
+    body "Hallon timed out."
+  end
 
   get '/:uri' do
-    if Hallon::Session.instance?
-      session = Hallon::Session.instance
-    else
-      session = Hallon::Session.initialize IO.read('./spotify_appkey.key')
-    end
+    session = Hallon::Session.instance
     unless Hallon::Link.valid?(params[:uri])
       "Given URI was not a valid spotify URI"
     end
-    session.login!(ENV['SPOTIFY_USRNM'], ENV['SPOTIFY_PWD'])
     uri = params[:uri]
     playlist_link = Hallon::Link.new(uri)
-    
+
     @playlist = Hallon::Playlist.new(playlist_link).load
     @tracks = @playlist.tracks
-    
+
     haml :index
   end
 end
