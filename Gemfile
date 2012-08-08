@@ -3,4 +3,8 @@ source :gemcutter
 gem 'sinatra', :require => 'sinatra/base'
 gem 'hallon'
 gem 'haml'
-gem 'sinatra-contrib', :require => 'sinatra/reloader', :group => :development
+group :development do
+  gem 'heroku'
+  gem 'foreman'
+  gem 'sinatra-contrib', :require => 'sinatra/reloader'
+end
