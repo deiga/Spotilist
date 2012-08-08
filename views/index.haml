@@ -1,0 +1,7 @@
+/ index.html.haml
+%h1 Hullo, #LOA!
+
+.content
+  %h2#playlist= "Listing tracks for #{@playlist.name} (#{@playlist.to_str}):"
+  - @tracks.each_with_index do |track, i|
+    %p.row= "\t (#{i+1}/#{@playlist.size}) #{track.name}"
