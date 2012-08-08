@@ -5,7 +5,7 @@ require 'sinatra'
 
 class Spotilist < Sinatra::Base
   configure :production do
-    require 'libspotify-heroku'
+    require './libspotify-heroku'
   end
 
   configure :development do
