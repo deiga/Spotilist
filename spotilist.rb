@@ -47,12 +47,12 @@ class Spotilist < Sinatra::Base
     body "Hallon timed out."
   end
 
-  get '/:uri' do
+  get %r{/(?<uri>spotify.*)} do |uri|
     session = Hallon::Session.instance
-    unless Hallon::Link.valid?(params[:uri])
+    unless Hallon::Link.valid?(uri)
       "Given URI was not a valid spotify URI"
     end
-    uri = params[:uri]
+    uri = uri
     playlist_link = Hallon::Link.new(uri)
 
     @playlist = Hallon::Playlist.new(playlist_link).load
