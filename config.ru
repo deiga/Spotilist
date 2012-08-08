@@ -1,4 +1,3 @@
-require 'rubygems'
+require 'Spotilist'
 
-require './Spotilist'
 run Spotilist
