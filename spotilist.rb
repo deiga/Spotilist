@@ -20,8 +20,10 @@ class Spotilist < Sinatra::Base
 		session.login!(ENV['SPOTIFY_USRNM'], ENV['SPOTIFY_PWD'])
 		uri = params[:uri]
 		playlist_link = Hallon::Link.new(uri)
+		
 		@playlist = Hallon::Playlist.new(playlist_link).load
-		@tracks = @playlist.tracks#.to_a.map(&:load)
+		@tracks = @playlist.tracks
+		
 		haml :index
 	end
 end
