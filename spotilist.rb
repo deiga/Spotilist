@@ -1,11 +1,15 @@
 # spotilist.rb
 
+require 'bundler/setup'
+require 'sinatra'
+
 class Spotilist < Sinatra::Base
   configure :production do
     require 'libspotify-heroku'
   end
 
   configure :development do
+    require 'sinatra/reloader'
     register Sinatra::Reloader
   end
 
