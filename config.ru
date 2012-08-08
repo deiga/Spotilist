@@ -1,3 +1,3 @@
-require 'Spotilist'
+require './spotilist'
 
 run Spotilist
