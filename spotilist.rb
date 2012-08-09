@@ -39,7 +39,7 @@ class Spotilist < Sinatra::Base
     $hallon ||= begin
       require 'hallon'
       appkey = Base64.decode64(env('SPOTIFY_APPKEY'))
-      Hallon.load_timeout = 35
+      Hallon.load_timeout = 45
       Hallon::Session.initialize(appkey).tap do |hallon|
         hallon.login!(env('SPOTIFY_USRNM'), env('SPOTIFY_PWD'))
       end
