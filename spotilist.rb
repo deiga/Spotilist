@@ -16,7 +16,7 @@ class Spotilist < Sinatra::Base
   configure do 
     $hallon ||= begin
       require 'hallon'
-      appkey = ENV['SPOTIFY_APPKEY']# IO.read('./bin/spotify_appkey.key')
+      appkey = IO.read(ENV['SPOTIFY_APPKEY'])
       Hallon.load_timeout = 35
       Hallon::Session.initialize(appkey).tap do |hallon|
         hallon.login!(ENV['SPOTIFY_USRNM'], ENV['SPOTIFY_PWD'])
