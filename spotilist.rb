@@ -49,11 +49,6 @@ class Spotilist < Sinatra::Base
     end
   end
 
-  error Hallon::TimeoutError do
-    status 504
-    body "Hallon timed out."
-  end
-
   get %r{/(?<uri>spotify.*)} do |uri|
     session = Hallon::Session.instance
     unless Hallon::Link.valid?(uri)
