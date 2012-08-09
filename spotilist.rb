@@ -4,6 +4,10 @@ require 'bundler/setup'
 require 'sinatra'
 require 'base64'
 
+before do
+  headers "Content-Type" => "text/html; charset=utf-8"
+end
+
 def env(varname)
   ENV.fetch(varname) do
     raise ConfigurationError, "Missing ENV['#{varname}']."
@@ -39,6 +43,11 @@ class Spotilist < Sinatra::Base
   helpers do
     def hallon
       Hallon::Session.instance
+    end
+    def cache_for(mins = 1)
+      if settings.environment != :development
+        response['Cache-Control'] = "public, max-age=#{60*mins}"
+      end
     end
   end
 
