@@ -2,24 +2,31 @@
 
 require 'bundler/setup'
 require 'sinatra'
+require 'base64'
+
+def env(varname)
+  ENV.fetch(varname) do
+    raise ConfigurationError, "Missing ENV['#{varname}']."
+  end
+end
 
 class Spotilist < Sinatra::Base
-  configure :production do
-    require './libspotify-heroku'
-  end
 
   configure :development do
     require 'sinatra/reloader'
     register Sinatra::Reloader
   end
 
+  class ConfigurationError < StandardError
+  end
+
   configure do 
     $hallon ||= begin
       require 'hallon'
-      appkey = ENV['SPOTIFY_APPKEY']# IO.read('./bin/spotify_appkey.key')
+      appkey = Base64.decode64(env('SPOTIFY_APPKEY'))
       Hallon.load_timeout = 35
       Hallon::Session.initialize(appkey).tap do |hallon|
-        hallon.login!(ENV['SPOTIFY_USRNM'], ENV['SPOTIFY_PWD'])
+        hallon.login!(env('SPOTIFY_USRNM'), env('SPOTIFY_PWD'))
       end
     end
 
