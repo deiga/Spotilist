@@ -1,7 +1,24 @@
-.content
-  %h3#playlist= "Listing tracks for #{@playlist.name} (#{@playlist.to_str}):"
-  - @tracks.each_with_index do |track, i|
-    - until track.loaded?
-      - p track.status
-    %span.row= "\t (#{i+1}/#{@playlist.size}) #{track.name}"
-    %br
+%article.object.playlist
+  %h1>
+    = image_to(@playlist.image) if @playlist.image
+    = @playlist.name
+  %small>
+    ( 
+    = @playlist.to_str
+    )
+
+  %p.details.artist>
+    by&nbsp;
+    = link_to @playlist.owner.name, @playlist.owner
+
+  -unless @tracks.empty?
+    .clear
+    %section.tracks
+      %h2>Tracks
+      - @tracks.each_with_index do |track, i|
+        %span.row>
+          = "\t (#{i+1}/#{@playlist.size})"
+          = link_to track.name, track
+          &nbsp;-&nbsp;
+          = link_to track.artist.name, track.artist
+        %br
