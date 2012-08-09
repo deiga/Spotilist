@@ -1,0 +1,22 @@
+%article.object.album
+  %h1>
+    = image_to(@cover) if @cover
+    = @album.name
+    %small>
+      (loaded in 
+      = @browse.request_duration.to_f.round(2)
+      s)
+
+  %p.details.artist>
+    by&nbsp;
+    = link_to @artist.name, @artist
+
+  %p.details.review
+    = @review
+
+  -unless @tracks.empty?
+    .clear
+    %section.tracks
+      %h2>Tracks
+      %p>
+        = @tracks.map { |track| link_to track.name, track }.join(', ')

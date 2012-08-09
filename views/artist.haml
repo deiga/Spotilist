@@ -1,0 +1,25 @@
+%article.object.artist
+  %h1>
+    = image_to(@portrait) if @portrait
+    = @artist.name
+    %small>
+      (loaded in 
+      = @browse.request_duration.to_f.round(2)
+      s)
+
+  %p
+    = @tracks.map { |track| link_to track.name, track }.join(', ')
+
+  - unless @similar_artists.empty?
+    .clear
+    %section.similar_artists
+      %h2>Similar Artists
+      %p
+        = @similar_artists.map { |artist| link_to artist.name, artist }.join(', ')
+
+  - unless @portraits.empty?
+    .clear
+    %section.images
+      %h2>Additional portraits
+      - @portraits.each do |portrait|
+        = image_to(portrait)
