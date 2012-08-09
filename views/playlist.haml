@@ -1,11 +1,7 @@
 %article.object.playlist
-  %h1>
+  %h1
     = image_to(@playlist.image) if @playlist.image
     = @playlist.name
-  %small>
-    ( 
-    = @playlist.to_str
-    )
 
   %p.details.artist>
     by&nbsp;
@@ -14,11 +10,21 @@
   -unless @tracks.empty?
     .clear
     %section.tracks
-      %h2>Tracks
-      - @tracks.each_with_index do |track, i|
-        %span.row>
-          = "\t (#{i+1}/#{@playlist.size})"
-          = link_to track.name, track
-          &nbsp;-&nbsp;
-          = link_to track.artist.name, track.artist
-        %br
+      %h2>
+        Tracks (
+        = @tracks.count
+        )
+      %table
+        %thead
+          %tr
+            %td #
+            %td Track
+            %td Artist
+            %td Time
+        %tbody
+          - @tracks.each_with_index do |track, i|
+            %tr
+              %td= i+1
+              %td{ nowrap: 'nowrap' }= link_to track.name.gsub(/^(.{20}[\w.]*)(.*)/) {$2.empty? ? $1 : $1 + '...'}, track
+              %td{ nowrap: 'nowrap' }= link_to track.artist.name.gsub(/^(.{20}[\w.]*)(.*)/) {$2.empty? ? $1 : $1 + '...'}, track.artist
+              %td= Time.at(track.duration).gmtime.strftime("%M:%S")
