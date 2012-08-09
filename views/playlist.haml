@@ -1,0 +1,7 @@
+.content
+  %h3#playlist= "Listing tracks for #{@playlist.name} (#{@playlist.to_str}):"
+  - @tracks.each_with_index do |track, i|
+    - until track.loaded?
+      - p track.status
+    %span.row= "\t (#{i+1}/#{@playlist.size}) #{track.name}"
+    %br

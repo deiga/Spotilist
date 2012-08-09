@@ -1,0 +1,23 @@
+!!! 5
+%html
+  %head
+    %meta{ charset:"UTF-8"}
+    %title= @title || 'Spotilist'
+    %link{rel: 'stylesheet', type: 'text/css', href: '/app.css'}
+  %body
+    %nav
+      %h1
+        %a{ href: "/" }>Spotilist
+      %form{ action: "/redirect_to", method: "get"}
+        %label{ for: "spotify_uri"}>Enter a Spotify URI:
+        %input{ type: "text", id: "spotify_uri", name: "spotify_uri"}
+        %input{ type:"submit",value:"Go"}
+    %section
+      = yield
+      .clear
+    %footer>
+      %p<
+        Powered by&nbsp;
+        %a{ href: "http://github.com/Burgestrand/Hallon"}> Hallon
+      %p.details
+        %small= logged_in_text

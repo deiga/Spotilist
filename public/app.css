@@ -1,0 +1,116 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+.clear { clear: both }
+
+body
+{
+  color: #333;
+  font: 100.01%/1.25 'Lucida Grande', 'Arial', sans-serif;
+}
+
+body > nav, section, footer
+{
+  margin: 0 auto;
+  position: relative;
+  width: 40em;
+}
+
+nav
+{
+  border-bottom: 1px solid #DDD;
+  text-align: right;
+  padding: 1em 0 .5em;
+}
+
+nav h1
+{
+  float: left;
+  font-size: 1em;
+  margin: 0;
+}
+
+nav h1 a
+{
+  border-bottom: 1px dotted;
+  color: #DDD;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+nav h1 a:hover
+{
+  border: 0;
+}
+
+nav input
+{
+  position: relative;
+  top: -.2em;
+}
+
+nav input
+{
+  display: inline-block;
+  height: 2em;
+  padding: .4em .5em;
+}
+
+nav input[type="text"]
+{
+  border: 1px solid #DDD;
+  border-radius: .2em;
+  font: inherit;
+  font-family: monospace;
+  padding: .4em .5em;
+  width: 23.5em;
+}
+
+nav + section
+{
+  clear: both;
+}
+
+h1 { font-size: 1.4em }
+h2 { font-size: 1.4em }
+
+h1 img
+{
+  float: left;
+  margin-right: 1em;
+}
+
+img
+{
+  border: 2px solid;
+  height: 150px;
+  width: 150px;
+}
+
+section.images
+{
+  text-align: center;
+}
+
+ul.tracks li
+{
+  display: inline;
+}
+
+footer
+{
+  border: 1px solid #DDD;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  padding: .5em;
+}
+
+footer p
+{
+  font-size: 0.8em;
+  text-align: center;
+}
+
+footer .details
+{
+  color: #999;
+}
