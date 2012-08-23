@@ -103,6 +103,7 @@ class Spotilist < Sinatra::Base
   get uri_for(:playlist) do |playlist|
     @playlist = Hallon::Playlist.new(playlist).load
     @tracks = @playlist.tracks.to_a.map(&:load)
+    @length = @tracks.inject(0) { |result, item| result + item.duration }
 
     haml :playlist
   end

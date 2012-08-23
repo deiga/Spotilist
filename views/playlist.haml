@@ -10,10 +10,14 @@
   -unless @tracks.empty?
     .clear
     %section.tracks
-      %h2>
-        Tracks (
-        = @tracks.count
-        )
+      %h2
+        Tracks 
+        %small
+          (
+          = @tracks.count
+          tracks,
+          = Time.at(@length).gmtime.strftime("%H:%M")
+          hours )
       %table
         %thead
           %tr
