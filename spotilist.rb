@@ -32,10 +32,14 @@ class Spotilist < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  configure :production do
+    require 'newrelic_rpm'
+  end
+
   class ConfigurationError < StandardError
   end
 
-  configure do 
+  configure do
     $hallon ||= begin
       require 'hallon'
       appkey = Base64.decode64(env('SPOTIFY_APPKEY'))
