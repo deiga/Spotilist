@@ -32,10 +32,14 @@ class Spotilist < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  configure :production do
+    require 'newrelic_rpm'
+  end
+
   class ConfigurationError < StandardError
   end
 
-  configure do 
+  configure do
     $hallon ||= begin
       require 'hallon'
       appkey = Base64.decode64(env('SPOTIFY_APPKEY'))
@@ -103,6 +107,7 @@ class Spotilist < Sinatra::Base
   get uri_for(:playlist) do |playlist|
     @playlist = Hallon::Playlist.new(playlist).load
     @tracks = @playlist.tracks.to_a.map(&:load)
+    @length = @tracks.inject(0) { |result, item| result + item.duration }
 
     haml :playlist
   end
