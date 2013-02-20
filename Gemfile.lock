@@ -1,32 +1,32 @@
 GIT
   remote: git://github.com/Burgestrand/Hallon.git
-  revision: 470bc9786de0e76e776c6abba2262aa7eaa1e057
+  revision: c98541495e93c2358b20290f180d973e7036a0a5
   specs:
     hallon (0.18.1)
-      ref (~> 1.0)
       spotify (~> 12.3.0)
       weak_observable (~> 1.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    backports (2.6.4)
+    backports (2.8.2)
     eventmachine (1.0.0)
-    ffi (1.1.5)
-    haml (3.1.7)
+    ffi (1.4.0)
+    haml (4.0.0)
+      tilt
     libspotify (12.1.51.1)
-    newrelic_rpm (3.4.2.1)
-    rack (1.4.1)
-    rack-protection (1.2.0)
+    newrelic_rpm (3.5.7.59)
+    rack (1.5.2)
+    rack-protection (1.3.2)
       rack
-    rack-test (0.6.1)
+    rack-test (0.6.2)
       rack (>= 1.0)
-    ref (1.0.0)
-    sinatra (1.3.3)
-      rack (~> 1.3, >= 1.3.6)
-      rack-protection (~> 1.2)
+    ref (1.0.2)
+    sinatra (1.3.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
-    sinatra-contrib (1.3.1)
+    sinatra-contrib (1.3.2)
       backports (>= 2.0)
       eventmachine
       rack-protection
