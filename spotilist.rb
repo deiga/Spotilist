@@ -32,9 +32,9 @@ class Spotilist < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  configure :production do
-    require 'newrelic_rpm'
-  end
+  # configure :production do
+  #   require 'newrelic_rpm'
+  # end
 
   class ConfigurationError < StandardError
   end
