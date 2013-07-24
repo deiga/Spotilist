@@ -19,6 +19,10 @@ class Spotilist < Sinatra::Base
     enable :logging, :dump_errors, :raise_errors
   end
 
+  configure :production do
+    require 'newrelic_rpm'
+  end
+
   configure do
     set :app_file, __FILE__
 
