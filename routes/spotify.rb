@@ -11,7 +11,7 @@ class Spotilist < Sinatra::Base
     @track  = Hallon::Track.new(track).load
     @artist = @track.artist.load
     @album  = @track.album.load
-    @length = Time.at(@track.duration).gmtime.strftime("%M:%S")
+    @length = duration_in_minutes(@track.duration)
     haml :track
   end
 
@@ -45,7 +45,8 @@ class Spotilist < Sinatra::Base
   get uri_for(:playlist) do |playlist|
     @playlist = Hallon::Playlist.new(playlist).load
     @tracks = @playlist.tracks.to_a.map(&:load)
-    @length = @tracks.inject(0) { |result, item| result + item.duration }
+    ss = @tracks.inject(0) { |result, item| result + item.duration }
+    @duration = duration_in_hours(ss);
 
     haml :playlist
   end

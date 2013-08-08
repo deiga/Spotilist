@@ -14,10 +14,9 @@
         Tracks 
         %small
           (
-          = @tracks.count
-          tracks,
-          = Time.at(@length).gmtime.strftime("%H:%M")
-          hours )
+          = "#{@tracks.count} tracks,"
+          = "#{@duration} hours"
+          )
       %table
         %thead
           %tr
@@ -31,4 +30,4 @@
               %td= i+1
               %td{ nowrap: 'nowrap' }= link_to track.name.gsub(/^(.{20}[\w.]*)(.*)/) {$2.empty? ? $1 : $1 + '...'}, track
               %td{ nowrap: 'nowrap' }= link_to track.artist.name.gsub(/^(.{20}[\w.]*)(.*)/) {$2.empty? ? $1 : $1 + '...'}, track.artist
-              %td= Time.at(track.duration).gmtime.strftime("%M:%S")
+              %td= duration_in_minutes(track.duration)
