@@ -16,7 +16,7 @@ GEM
     haml (4.0.3)
       tilt
     libspotify (12.1.51.3)
-    newrelic_rpm (3.6.5.130)
+    newrelic_rpm (3.6.6.147)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
