@@ -9,10 +9,6 @@ require_relative 'routes/init'
 
 class Spotilist < Sinatra::Base
 
-  before do
-    headers "Content-Type" => "text/html; charset=utf-8"
-  end
-
   configure :development do
     require 'sinatra/reloader'
     register Sinatra::Reloader
@@ -34,14 +30,16 @@ class Spotilist < Sinatra::Base
       end
       Hallon.load_timeout = 45
       Hallon::Session.initialize(appkey).tap do |hallon|
-      hallon.login!(env('SPOTIFY_USRNM'), env('SPOTIFY_PWD'))
+        hallon.login!(env('SPOTIFY_USRNM'), env('SPOTIFY_PWD'))
+      end
     end
-  end
 
-  set :hallon, $hallon
+    set :hallon, $hallon
 
     # Allow iframing
     disable :protection
+    # Only one request at a time
+    enable :lock
   end
 
   configure :production do
@@ -85,6 +83,13 @@ class Spotilist < Sinatra::Base
     if Hallon::Session.instance?
       hallon = Hallon::Session.instance
       hallon.logout!
+    end
+  end
+
+  before do
+    headers "Content-Type" => "text/html; charset=utf-8"
+    unless hallon.logged_in?
+      hallon.login!(config_env('SPOTIFY_USRNM'), config_env('SPOTIFY_PWD'))
     end
   end
 
