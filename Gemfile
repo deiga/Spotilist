@@ -4,6 +4,9 @@ ruby "2.0.0"
 gem 'sinatra'
 gem 'hallon', github: 'Burgestrand/Hallon'
 gem 'haml'
+
+gem 'thin'
+
 group :development do
   gem 'sinatra-contrib'
 end
