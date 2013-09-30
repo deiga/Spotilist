@@ -23,17 +23,17 @@ def logged_in_text
     user = hallon.user.load
     "logged in as #{link_to user.name, user}"
   else
-    "lot logged in"
+    "not logged in"
   end
 end
 
 def link_to(text, object)
   link = object.to_link
-  %Q{<a class="#{link.type}" href="/#{link.to_uri}">#{text}</a>}
+  %Q{<a class="#{link.type}" href="#{url('/'+link.to_uri)}">#{text}</a>}
 end
 
 def image_to(image_link)
-  %Q{<img src="/#{image_link.to_str}" class="#{image_link.type}">}
+  %Q{<img src="#{url '/'+image_link.to_str}" class="#{image_link.type}">}
 end
 
 def uri_for(type)
