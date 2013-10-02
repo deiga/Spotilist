@@ -1,4 +1,4 @@
-Spotilist <sub><sup>(0.5.4)</sup></sub>
+Spotilist <sub><sup>(0.5.5)</sup></sub>
 =========
 [![Code Climate](https://codeclimate.com/github/deiga/Spotilist.png)](https://codeclimate.com/github/deiga/Spotilist)
 
