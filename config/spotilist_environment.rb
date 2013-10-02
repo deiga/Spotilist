@@ -11,7 +11,9 @@ class Spotilist < Sinatra::Base
   end
 
   configure do
-    set :app_file, __FILE__
+    set :environment, ENV['RACK_ENV'].to_sym
+    set :root, Dir.pwd
+    set :app_file, Proc.new { File.join(root, "app.rb") }
 
     $hallon ||= begin
       require 'hallon'
