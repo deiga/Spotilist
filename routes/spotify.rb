@@ -42,7 +42,7 @@ class Spotilist < Sinatra::Base
   get uri_for(:playlist) do |playlist|
     @playlist = Hallon::Playlist.new(playlist).load
     @tracks = @playlist.tracks.to_a.map(&:load)
-    ss = @tracks.map(&:duration).sum# { |result, item| result + item.duration }
+    ss = @tracks.map(&:duration).reduce(:+)
     @duration = duration_in_hours(ss);
 
     haml :playlist
