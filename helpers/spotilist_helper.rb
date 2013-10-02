@@ -26,5 +26,9 @@ class Spotilist < Sinatra::Base
         time_in_seconds
       end
     end
+
+    def get_tracks(object, from=0, to=20)
+      object.tracks[0, 20].map(&:load)
+    end
   end
 end
