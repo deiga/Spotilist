@@ -2,8 +2,8 @@ class Spotilist < Sinatra::Base
 
   get uri_for(:profile) do |user|
     @user = Hallon::User.new(user).load
-    @starred = @user.starred.load
-    @starred_tracks = @starred.tracks[0, 20].map(&:load)
+    starred = @user.starred.load
+    @starred_tracks = get_tracks(starred)
     haml :user
   end
 
@@ -11,27 +11,25 @@ class Spotilist < Sinatra::Base
     @track  = Hallon::Track.new(track).load
     @artist = @track.artist.load
     @album  = @track.album.load
-    @length = duration_in_minutes(@track.duration)
     haml :track
   end
 
   get uri_for(:artist) do |artist|
     @artist    = Hallon::Artist.new(artist).load
-    @browse    = @artist.browse.load
-    @portraits = @browse.portrait_links.to_a
-    @portrait  = @portraits.shift
-    @tracks    = @browse.tracks[0, 20].map(&:load)
-    @similar_artists = @browse.similar_artists.to_a.map(&:load)
+    browse    = @artist.browse.load
+    @portraits = browse.portrait_links.to_a
+    @tracks    = get_tracks(browse)
+    @similar_artists = browse.similar_artists.to_a.map(&:load)
     haml :artist
   end
 
   get uri_for(:album) do |album|
     @album  = Hallon::Album.new(album).load
-    @browse = @album.browse.load
+    browse = @album.browse.load
     @cover  = @album.cover_link
     @artist = @album.artist.load
-    @tracks = @browse.tracks[0, 20].map(&:load)
-    @review = @browse.review
+    @tracks = get_tracks(browse)
+    @review = browse.review
     haml :album
   end
 
@@ -44,7 +42,7 @@ class Spotilist < Sinatra::Base
   get uri_for(:playlist) do |playlist|
     @playlist = Hallon::Playlist.new(playlist).load
     @tracks = @playlist.tracks.to_a.map(&:load)
-    ss = @tracks.inject(0) { |result, item| result + item.duration }
+    ss = @tracks.map(&:duration).sum# { |result, item| result + item.duration }
     @duration = duration_in_hours(ss);
 
     haml :playlist

@@ -1,14 +1,14 @@
 %article.object.track
   %h1>
     = image_to(@album.cover_link) if @album.cover_link
-    = @track.name 
+    = @track.name
     %small>
       (
-      = @length 
+      = duration_in_minutes(@track.duration)
       )
   %p.details.artist>
-    by 
+    by
     = link_to @artist.name, @artist
   %p.details.album>
-    in album 
+    in album
     = link_to @album.name, @album

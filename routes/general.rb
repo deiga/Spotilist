@@ -6,8 +6,12 @@ class Spotilist < Sinatra::Base
     body "Hallon timed out."
   end
 
-  get '/' do
+  error do
+    Rollbar.report_exception(env['sinatra.error'])
+    "error"
+  end
 
+  get '/' do
     haml :index
   end
 

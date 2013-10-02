@@ -2,10 +2,6 @@
   %h1>
     = image_to(@cover) if @cover
     = @album.name
-    %small>
-      (loaded in 
-      = @browse.request_duration.to_f.round(2)
-      s)
 
   %p.details.artist>
     by&nbsp;

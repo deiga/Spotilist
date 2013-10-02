@@ -1,11 +1,7 @@
 %article.object.artist
   %h1>
-    = image_to(@portrait) if @portrait
+    = image_to(@portraits.shift) unless @portraits.empty?
     = @artist.name
-    %small>
-      (loaded in 
-      = @browse.request_duration.to_f.round(2)
-      s)
 
   %p
     = @tracks.map { |track| link_to track.name, track }.join(', ')
