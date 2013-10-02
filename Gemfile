@@ -6,6 +6,7 @@ gem 'hallon', github: 'Burgestrand/Hallon'
 gem 'haml'
 
 gem 'thin'
+gem 'rollbar'
 
 group :development do
   gem 'sinatra-contrib'

@@ -27,6 +27,12 @@ class Spotilist < Sinatra::Base
       end
     end
 
+    Rollbar.configure do |config|
+      config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
+      config.environment = Sinatra::Base.environment
+      config.root = Dir.pwd
+    end
+
     set :hallon, $hallon
 
     # Allow iframing
