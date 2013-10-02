@@ -1,4 +1,4 @@
-Spotilist <sub><sup>(0.5.3)</sup></sub>
+Spotilist <sub><sup>(0.5.4)</sup></sub>
 =========
 Web application to display Spotify contents based on URI's.
 
