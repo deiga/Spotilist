@@ -1,5 +1,6 @@
 Spotilist <sub><sup>(0.5.3)</sup></sub>
 =========
+[![Code Climate](https://codeclimate.com/github/deiga/Spotilist.png)](https://codeclimate.com/github/deiga/Spotilist)
 Web application to display Spotify contents based on URI's.
 
 It uses [Hallon](https://github.com/Burgestrand/Hallon), [libspotify](http://developer.spotify.com/en/libspotify/overview/) (through Hallon)
