@@ -78,18 +78,6 @@ common: &default_settings
   # problems, your app may block indefinitely.
   # verify_certificate: true
   
-  # Set your application's Apdex threshold value with the 'apdex_t'
-  # setting, in seconds. The apdex_t value determines the buckets used
-  # to compute your overall Apdex score. 
-  # Requests that take less than apdex_t seconds to process will be
-  # classified as Satisfying transactions; more than apdex_t seconds
-  # as Tolerating transactions; and more than four times the apdex_t
-  # value as Frustrating transactions. 
-  # For more about the Apdex standard, see
-  # http://newrelic.com/docs/general/apdex
-
-  apdex_t: 0.5
-  
   #============================== Browser Monitoring ===============================
   # New Relic Real User Monitoring gives you insight into the performance real users are
   # experiencing with your website. This is accomplished by measuring the time it takes for
@@ -110,7 +98,13 @@ common: &default_settings
   # proxy_user:
   # proxy_pass:
 
-  
+  # The agent can optionally log all data it sends to New Relic servers to a
+  # separate log file for human inspection and auditing purposes. To enable this
+  # feature, change 'enabled' below to true.
+  # See: https://newrelic.com/docs/ruby/audit-log
+  audit_log:
+    enabled: false
+
   # Tells transaction tracer and error collector (when enabled)
   # whether or not to capture HTTP params.  When true, frameworks can
   # exclude HTTP parameters from being captured.
@@ -179,7 +173,7 @@ common: &default_settings
     # to comma separated values.  Default is to ignore routing errors
     # which are how 404's get triggered.
     #
-    ignore_errors: ActionController::RoutingError
+    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
 
   # (Advanced) Uncomment this to ensure the cpu and memory samplers
   # won't run.  Useful when you are using the agent to monitor an

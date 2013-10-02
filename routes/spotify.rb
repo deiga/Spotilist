@@ -21,8 +21,7 @@ class Spotilist < Sinatra::Base
     @portraits = @browse.portrait_links.to_a
     @portrait  = @portraits.shift
     @tracks    = @browse.tracks[0, 20].map(&:load)
-    @similar_artists = @browse.similar_artists.to_a
-    @similar_artists.each(&:load)
+    @similar_artists = @browse.similar_artists.to_a.map(&:load)
     haml :artist
   end
 
