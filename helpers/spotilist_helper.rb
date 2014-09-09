@@ -1,5 +1,4 @@
 class Spotilist < Sinatra::Base
-
   helpers do
 
     def duration_in_minutes(time_in_seconds)

@@ -1,6 +1,7 @@
 def add_leading_zero(number)
   number.to_s.length < 2 ? "0#{number}" : number
 end
+
 def env(varname)
   ENV.fetch(varname) do
     raise ConfigurationError, "Missing ENV['#{varname}']."
@@ -15,9 +16,8 @@ def hallon
 end
 
 def cache_for(mins = 1)
-  if settings.environment != :development
-    response['Cache-Control'] = "public, max-age=#{60*mins}"
-  end
+  return false if settings.environment == :development
+  response['Cache-Control'] = "public, max-age=#{60 * mins}"
 end
 
 def logged_in_text
@@ -25,17 +25,17 @@ def logged_in_text
     user = hallon.user.load
     "logged in as #{link_to user.name, user}"
   else
-    "not logged in"
+    'not logged in'
   end
 end
 
 def link_to(text, object)
   link = object.to_link
-  %Q{<a class="#{link.type}" href="#{url('/'+link.to_uri)}">#{text}</a>}
+  %(<a class="#{link.type}" href="#{url('/' + link.to_uri)}">#{text}</a>)
 end
 
 def image_to(image_link)
-  %Q{<img src="#{url '/'+image_link.to_str}" class="#{image_link.type}">}
+  %(<img src="#{url '/' + image_link.to_str}" class="#{image_link.type}">)
 end
 
 def uri_for(type)
