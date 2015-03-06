@@ -1,6 +1,8 @@
 class Spotilist < Sinatra::Base
 
   get uri_for(:profile) do |user|
+    p user
+    # p RSpotify::User.find(user)
     @user = Hallon::User.new(user).load
     starred = @user.starred.load
     @starred_tracks = get_tracks(starred)

@@ -4,6 +4,7 @@ ruby "2.0.0"
 gem 'sinatra'
 gem 'hallon', github: 'Burgestrand/Hallon'
 gem 'haml'
+gem 'rspotify'
 
 gem 'thin'
 gem 'rollbar'

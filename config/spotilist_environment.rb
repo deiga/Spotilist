@@ -27,12 +27,15 @@ class Spotilist < Sinatra::Base
     end
 
     Rollbar.configure do |config|
-      config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
+      config.access_token = env('ROLLBAR_ACCESS_TOKEN')
       config.environment = Sinatra::Base.environment
       config.root = Dir.pwd
     end
 
     set :hallon, $hallon
+
+    RSpotify.authenticate(env('CLIENT_ID'), env('CLIENT_SECRET'))
+
 
     # Allow iframing
     disable :protection
