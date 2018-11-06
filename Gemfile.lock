@@ -19,7 +19,7 @@ GEM
     libspotify (12.1.51.3)
     multi_json (1.13.1)
     newrelic_rpm (5.4.0.347)
-    rack (1.6.10)
+    rack (1.6.11)
     rack-protection (1.5.5)
       rack
     rack-test (0.7.0)
