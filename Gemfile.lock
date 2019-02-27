@@ -19,7 +19,7 @@ GEM
       tilt
     libspotify (12.1.51.3)
     multi_json (1.13.1)
-    newrelic_rpm (6.0.0.351)
+    newrelic_rpm (6.1.0.352)
     rack (1.6.11)
     rack-protection (1.5.5)
       rack
