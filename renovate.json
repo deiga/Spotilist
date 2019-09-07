@@ -1,5 +1,9 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":rebaseStalePrs",
+    ":masterIssue",
+    "group:linters",
+    "group:allNonMajor"
   ]
 }
