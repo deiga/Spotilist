@@ -1,5 +1,8 @@
 {
   "extends": [
     "github>deiga/awhil"
-  ]
+  ],
+  "bundler": { 
+    "enabled": true 
+  }
 }
