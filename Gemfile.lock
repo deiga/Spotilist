@@ -18,7 +18,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     libspotify (12.1.51.3)
-    multi_json (1.13.1)
+    multi_json (1.14.1)
     newrelic_rpm (6.4.0.356)
     rack (1.6.11)
     rack-protection (1.5.5)
@@ -26,8 +26,7 @@ GEM
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     ref (1.0.5)
-    rollbar (2.20.1)
-      multi_json
+    rollbar (2.23.1)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
