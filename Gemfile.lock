@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Burgestrand/Hallon.git
-  revision: 0e31aac5db13194d44282f0e2bbfaa6cbea8a109
+  revision: b9f324b315b72132e4a57beeb046e631d8f34733
   specs:
     hallon (0.18.2)
       ffi (~> 1.8)
@@ -13,11 +13,11 @@ GEM
     backports (3.11.4)
     daemons (1.2.6)
     eventmachine (1.2.7)
-    ffi (1.9.25)
+    ffi (1.12.2)
     haml (5.2.0)
       temple (>= 0.8.0)
       tilt
-    libspotify (12.1.51.3)
+    libspotify (12.1.51.4)
     multi_json (1.14.1)
     newrelic_rpm (6.13.1)
     rack (1.6.12)
@@ -38,7 +38,7 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (>= 1.3, < 3)
-    spotify (12.5.2)
+    spotify (12.5.3)
       ffi (~> 1.0, >= 1.0.11)
       libspotify (~> 12.1.51)
     temple (0.8.2)
