@@ -14,7 +14,7 @@ GEM
     daemons (1.4.0)
     eventmachine (1.2.7)
     ffi (1.12.2)
-    haml (5.2.1)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     libspotify (12.1.51.4)
