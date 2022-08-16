@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/Burgestrand/Hallon.git
+  remote: https://github.com/Burgestrand/Hallon.git
   revision: b9f324b315b72132e4a57beeb046e631d8f34733
   specs:
     hallon (0.18.2)
@@ -26,7 +26,7 @@ GEM
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     ref (1.0.5)
-    rollbar (3.3.0)
+    rollbar (3.3.1)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
