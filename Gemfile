@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "3.4.8"
 
 gem 'sinatra'
 gem 'hallon', github: 'Burgestrand/Hallon'
